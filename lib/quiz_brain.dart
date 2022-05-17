@@ -1,6 +1,7 @@
 import 'question.dart';
 
 class QuizBrain {
+  //keeps track of number user has gone through
   int _questionNumber = 0;
 
   List<Question> _questionBank = [
@@ -42,5 +43,18 @@ class QuizBrain {
 
   bool getQuestionAnswer() {
     return _questionBank[_questionNumber].questionAnswer;
+  }
+
+  bool isFinished() {
+    return _questionNumber == _questionBank.length - 1;
+    // if (_questionNumber == _questionBank.length - 1) {
+    //   return true;
+    // }
+    //
+    // return false;
+  }
+
+  void reset() {
+    _questionNumber = 0;
   }
 }

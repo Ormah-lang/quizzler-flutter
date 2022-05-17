@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'quiz_brain.dart';
 
@@ -34,6 +35,18 @@ class _QuizPageState extends State<QuizPage> {
   void checkAnswer(bool userPickedAnswer) {
     bool correctAnswer = quizBrain.getQuestionAnswer();
     setState(() {
+      if (quizBrain.isFinished()) {
+        Alert(
+                context: context,
+                title: "Finished!",
+                desc: "You have reached the end of the quiz.")
+            .show();
+
+        quizBrain.reset();
+
+        scoreKeeper.clear();
+      }
+
       if (userPickedAnswer == correctAnswer) {
         scoreKeeper.add(Icon(Icons.check, color: Colors.white));
       } else {
